@@ -69,6 +69,8 @@
             @endif
         </div>
     </div>
+  <br>
+  <br>
     <!-- Scripts -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
@@ -76,7 +78,7 @@
       crossorigin="anonymous"
     ></script>
 </body>
-{{-- <footer style="position: fixed; height: 50px; bottom: 0; width: 100%; background-color: #d3d3d3; padding-top: 15px" id="footer" class="text text-center">
+<footer style="position: fixed; height: 50px; bottom: 0; width: 100%; background-color: #d3d3d3; padding-top: 15px" id="footer" class="text text-center">
     <p> Developed with &#10084;&#65039; by Farhan kurnia </p>
-  </footer> --}}
+  </footer>
 </html>
