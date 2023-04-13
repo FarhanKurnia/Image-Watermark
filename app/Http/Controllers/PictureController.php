@@ -41,15 +41,22 @@ class PictureController extends Controller
             $filenameWithoutEx = Str::slug($request->name) . '-' . time(); 
             $filename = $filenameWithoutEx . '.' . $file->getClientOriginalExtension(); 
             $file->storeAs('public/pictures', $filename); 
-
+            $size = $request->size;
+            $color = $request->color;
+            $horizontal = $request->align;
+            $vertical = $request->valign;
             $img = Image::make(storage_path('app/public/pictures/' . $filename));
-            $img->text($request->name, 200, 150, function($font) {  
+            $img->text($request->name, 120, 100, function($font) use($size,$color,$horizontal,$vertical) {  
                 $font->file(public_path('Cambridge.ttf'));   
-                $font->size(14);
-                $font->color('#FFFFFF');
-                $font->align('center');
-                $font->valign('middle');  
+                $font->size($size);
+                $font->color($color);
+                $font->align($horizontal);
+                $font->valign($vertical);  
                 $font->angle(0);  
+            });
+            $img->resize(400, 400, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
             });
             $filenameWatermark = $filenameWithoutEx . '_watermark.' . $file->getClientOriginalExtension(); 
             $img->save(storage_path('app/public/pictures/' . $filenameWatermark));
