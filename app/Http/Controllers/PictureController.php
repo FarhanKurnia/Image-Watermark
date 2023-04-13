@@ -31,9 +31,14 @@ class PictureController extends Controller
      */
     public function store(Request $request)
     {
+        // $this->validate($request, [
+        //     'name' => 'required|string|max:80',
+        //     'image' => 'required|image|mimes:jpg,jpeg,png'
+        // ]);
         $this->validate($request, [
-            'name' => 'required|string|max:80',
-            'image' => 'required|image|mimes:jpg,jpeg,png'
+            'name' => ['required', 'string', 'max:80'],
+            'size' => ['required', 'numeric', 'max:80'],
+            'image' => ['required','image'.'mimes:jpg,jpeg,png']
         ]);
 
         if ($request->hasFile('image')) {
@@ -44,7 +49,8 @@ class PictureController extends Controller
             $size = $request->size;
             $color = $request->color;
             $horizontal = $request->align;
-            $vertical = $request->valign;
+            $vertical = $request->valign;            
+            $fontFamily = $request->fontFamily;
             $img = Image::make(storage_path('app/public/pictures/' . $filename));
             $img->text($request->name, 120, 100, function($font) use($size,$color,$horizontal,$vertical) {  
                 $font->file(public_path('Cambridge.ttf'));   

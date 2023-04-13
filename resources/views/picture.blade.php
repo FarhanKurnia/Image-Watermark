@@ -24,12 +24,27 @@
                 <h4 class="card-title">Input Picture</h4>
               </div>
               <div class="card-body">
-                @if (session('success'))
+                @if ($errors->any())
+                  <div class="alert alert-danger mb-3 pb-0">
+                      <ul>
+                        @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                        @endforeach
+                      </ul>
+                  </div>
+                @elseif($message = Session::get('success'))
+                  <div class="alert alert-success mb-3 pb-0">
+                    <ul>
+                      <li>{{ $message }}</li>
+                    </ul>
+                  </div>
+                @endif
+                {{-- @if (session('success'))
                   <div class="alert alert-success">{{ session('success') }}</div>
                 @endif
                 @if (session('error'))
                   <div class="alert alert-danger">{{ session('error') }}</div>
-                @endif
+                @endif --}}
                 <form action="{{ route('picture.store') }}" method="post" enctype="multipart/form-data">
                   @csrf
                   <div class="form-group">
