@@ -38,7 +38,7 @@ class PictureController extends Controller
         $this->validate($request, [
             'name' => ['required', 'string', 'max:80'],
             'size' => ['required', 'numeric', 'max:80'],
-            'image' => ['required','image'.'mimes:jpg,jpeg,png']
+            'image' => ['required','image','mimes:jpg,jpeg,png']
         ]);
 
         if ($request->hasFile('image')) {
@@ -72,7 +72,7 @@ class PictureController extends Controller
                 'original_image' => $filename,
                 'image' => $filenameWatermark
             ]);
-            return redirect()->back()->with('result',$filenameWatermark)->with('request',$request->name)->with(['success' => 'Watermark Successfully']);
+            return redirect()->back()->with('result',$filenameWatermark)->with('watermark',$request->name)->with('size',$size)->with(['success' => 'Watermark Successfully']);
         }
         return redirect()->back()->with(['error' => 'File not found']);
 

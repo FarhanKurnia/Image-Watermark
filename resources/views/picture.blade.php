@@ -49,11 +49,11 @@
                   @csrf
                   <div class="form-group">
                     <label for="name">Watermark</label>
-                    <input type="text" class="form-control" name="name" placeholder="Input your watermark here">
+                    <input type="text" class="form-control" name="name" value="{{ session('watermark') }}" placeholder="Input your watermark here">
                   </div>
                   <div class="form-group mt-2">
                     <label for="size">Size</label>
-                    <input type="text" class="form-control" name="size" placeholder="Input your size here">
+                    <input type="text" class="form-control" name="size" value="{{ session('size') }}" placeholder="Input your size here">
                   </div>
                   <div class="form-group mt-2">
                     <label for="color">Color: </label>
